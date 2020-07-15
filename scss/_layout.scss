@@ -1,0 +1,199 @@
+div#wrapper {
+    header#navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        height: 100px;
+        z-index: 2;
+
+        div.header-color {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+
+            div.blue {
+                width: 100%;
+                background-color: #152e67;
+                height: 70%;
+            }
+            div.gold {
+                width: 100%;
+                background-color: #f5ad03;
+                height: 30%;
+
+                i {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: #332828;
+                    margin-left: calc(185px - 2rem);
+                    cursor: pointer;
+                    transition: all 300ms ease-in-out;
+                }
+
+                i.min {
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+        div.header-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            max-width: 100%;
+            width: auto;
+            height: 70px;
+            padding: 0.5rem;
+            margin-left: 3rem;
+
+            img.logo {
+                max-width: 100%;
+                max-height: 60px;
+                height: auto;
+                width: auto;
+            }
+
+            img.header {
+                max-width: 100%;
+                max-height: 50px;
+                height: auto;
+                width: auto;
+            }
+        }
+    }
+
+    aside.sidebar {
+        min-height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 185px;
+        background-color: #3f4246;
+        z-index: 1;
+        transition: all 500ms ease-in-out;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            width: 100%;
+            transition: all 500ms ease-in-out;
+
+            li {
+                width: 100%;
+                padding: 1rem 1.5rem;
+                transition: all 500ms ease-in-out;
+                overflow: hidden;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.2rem;
+                    width: 100%;
+                }
+
+                &:hover {
+                    border-radius: 10px;
+                    background-color: #152e67b4;
+                }
+            }
+
+            li.active {
+                border-radius: 10px;
+                background-color: #152e67;
+            }
+        }
+    }
+
+    aside.sidebar.min {
+        width: 0;
+        ul {
+            display: none;
+            li {
+                width: 0;
+            }
+        }
+    }
+
+    div.main-content {
+        width: 100%;
+        min-height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 100px;
+        padding-left: 185px;
+        transition: all 500ms ease-in-out;
+    }
+
+    div.main-content.min {
+        padding-left: 0;
+        transition: all 500ms ease-in-out;
+    }
+}
+
+@media (max-width: 500px) {
+    div#wrapper {
+        header#navbar {
+            div.header-color {
+                div.gold {
+                    i {
+                        margin-left: 0.5rem;
+                    }
+
+                    i.min {
+                        margin-left: calc(185px - 2rem);
+                    }
+                }
+            }
+        }
+
+        aside.sidebar {
+            width: 0;
+            ul {
+                display: none;
+                li {
+                    width: 0;
+                }
+            }
+        }
+
+        aside.sidebar.min {
+            width: 180px;
+            ul {
+                display: flex;
+                li {
+                    width: 100%;
+                }
+            }
+        }
+
+        div.main-content {
+            padding-left: 0;
+            transition: all 500ms;
+        }
+
+        div.main-content.min {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    div#wrapper {
+        header#navbar {
+            div.header-img {
+                margin-left: 0.2rem;
+            }
+        }
+    }
+}

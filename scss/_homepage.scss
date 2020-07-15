@@ -1,0 +1,142 @@
+div.wrapper {
+    header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        min-width: 100%;
+        height: 100px;
+
+        div.blue {
+            width: 100%;
+            background-color: #152e67;
+            height: 70%;
+        }
+        div.gold {
+            width: 100%;
+            background-color: #f5ad03;
+            height: 30%;
+        }
+    }
+    main {
+        display: block;
+        max-width: 100%;
+        min-height: 100vh;
+
+        div.form {
+            display: flex;
+            flex-direction: column;
+            width: 30vw;
+            margin: 130px auto 0 auto;
+
+            div.form-header {
+                display: flex;
+                flex-direction: column;
+
+                img {
+                    display: block;
+                    max-width: 100%;
+                    margin: auto;
+                }
+
+                img.level1 {
+                    height: 25vh;
+                }
+                img.level2 {
+                    height: 12vh;
+                }
+                small {
+                    color: blue;
+                    font-family: Century Gothic;
+                    letter-spacing: 1px;
+                    font-weight: bold;
+                    color: rgb(21, 46, 103);
+                    text-align: center;
+                    padding: 0.5rem 0;
+                }
+            }
+            div.form-body {
+                font-size: 1.2rem;
+                background-color: #d3d3d3;
+
+                form {
+                    padding: 2rem 1rem;
+
+                    div.error-feedback {
+                        text-align: center;
+                        color: white;
+                        background-color: rgb(194, 43, 43);
+                        border: 1px solid rgb(192, 2, 2);
+                        font-size: 0.8rem;
+                        padding: 1rem;
+                        margin-bottom: 1rem;
+                        transition: all 500ms;
+                    }
+
+                    div.form-group {
+                        margin-bottom: 1rem;
+
+                        label {
+                            font-weight: bold;
+                        }
+                        input {
+                            display: block;
+                            width: 100%;
+                            height: calc(1.5em + 0.75rem + 2px);
+                            padding: 0.375rem 0.75rem;
+                            font-size: 1rem;
+                            font-weight: 400;
+                            line-height: 1.5;
+                            color: #495057;
+                            background-color: #fff;
+                            background-clip: padding-box;
+                            border: 1px solid #ced4da;
+                            border-radius: 15px;
+                            margin-top: 0.5rem;
+                            outline: none;
+                        }
+                    }
+                    button {
+                        color: #212529;
+                        background-color: #f5ad03;
+                        border-color: #f5ad03;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        line-height: 1.5;
+                        border-radius: 0.25rem;
+                        border-width: 1px;
+                        font-weight: bold;
+                        margin: auto;
+                        cursor: pointer;
+                        display: block;
+
+                        &:hover {
+                            background-color: rgb(255, 191, 0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 401px) and (max-width: 800px) {
+    div.wrapper {
+        main {
+            div.form {
+                width: 50vw;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    div.wrapper {
+        main {
+            div.form {
+                width: 80vw;
+            }
+        }
+    }
+}

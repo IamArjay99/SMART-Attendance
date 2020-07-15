@@ -1,0 +1,13 @@
+@import "./homepage", "./layout";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    font-family: Century Gothic;
+    background-color: #edf0f5;
+}
