@@ -22,4 +22,12 @@ class Section extends Database {
         $query->execute([$course_id, $section_name]);
         return $query;
     }
+
+    // Check if section exist
+    public function checkSection($course_id, $section_name) {
+        $sql = "SELECT * FROM sections WHERE course_id = ? AND name = ?";
+        $query = $this->connect()->prepare($sql);
+        $query->execute([$course_id, $section_name]);
+        return $query->fetchAll();
+    }
 }   

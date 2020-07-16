@@ -60,7 +60,7 @@
         $student_number = $_POST['querySaveBasicInformation']['student_number'];
         $fullname = $_POST['querySaveBasicInformation']['fullname'];
         $password = $_POST['querySaveBasicInformation']['password'];
-        $email = $_POST['querySaveBasicInformation']['email'];
+        $email = $_POST['querySaveBasicInformation']['email']."@my.jru.edu";
         $course = $_POST['querySaveBasicInformation']['course'];
         $year = $_POST['querySaveBasicInformation']['year'];
         $section = $_POST['querySaveBasicInformation']['section'];

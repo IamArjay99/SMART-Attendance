@@ -9,11 +9,18 @@
         $email = $_POST['queryAddFaculty']['email']."@jru.edu";
         $profession = $_POST['queryAddFaculty']['profession'];
         $password = $_POST['queryAddFaculty']['password'];
-        $insertNewFaculty = $faculty->insertNewFaculty($name, $username, $email, $profession, $password);
-        if ($insertNewFaculty) {
-            echo "success";
+
+        // Check username and email if unique
+        $checkUsernameAndEmail = $faculty->checkUsernameAndEmail($username, $email);
+        if (count($checkUsernameAndEmail) > 0) {
+            echo "existed";
         } else {
-            echo "failed";
+            $insertNewFaculty = $faculty->insertNewFaculty($name, $username, $email, $profession, $password);
+            if ($insertNewFaculty) {
+                echo "success";
+            } else {
+                echo "failed";
+            }
         }
     }
 
@@ -22,11 +29,18 @@
         $subject_code = $_POST['queryAddSubject']['subject_code'];
         $subject_name = $_POST['queryAddSubject']['subject_name'];
         $subject_course = $_POST['queryAddSubject']['subject_course'];
-        $insertNewSubject = $subject->insertNewSubject($subject_course, $subject_code, $subject_name);
-        if ($insertNewSubject) {
-            echo "success";
+
+        // Checking if the subject existed
+        $checkSubject = $subject->checkSubject($subject_course, $subject_name, $subject_code);
+        if (count($checkSubject) > 0) {
+            echo "existed";
         } else {
-            echo "failed";
+            $insertNewSubject = $subject->insertNewSubject($subject_course, $subject_code, $subject_name);
+            if ($insertNewSubject) {
+                echo "success";
+            } else {
+                echo "failed";
+            }
         }
     }
 
@@ -263,11 +277,18 @@
     if (isset($_POST['queryAddCourse'])) {
         $course_name = $_POST['queryAddCourse']['course_name'];
         $course_abbr = $_POST['queryAddCourse']['course_abbr'];
-        $insertNewCourse = $course->insertNewCourse($course_name, $course_abbr);
-        if ($insertNewCourse) {
-            echo "success";
+
+        // Checking if the course is already exists
+        $checkCourse = $course->checkCourse($course_name, $course_abbr);
+        if (count($checkCourse) > 0) {
+            echo "existed";
         } else {
-            echo "failed";
+            $insertNewCourse = $course->insertNewCourse($course_name, $course_abbr);
+            if ($insertNewCourse) {
+                echo "success";
+            } else {
+                echo "failed";
+            }
         }
     }
 
@@ -275,10 +296,17 @@
     if (isset($_POST['queryAddSection'])) {
         $course_id = $_POST['queryAddSection']['course_id'];
         $section_name = $_POST['queryAddSection']['section_name'];
-        $insertNewSection = $section->insertNewSection($course_id, $section_name);
-        if ($insertNewSection) {
-            echo "success";
+
+        // Check if section exist
+        $checkSection = $section->checkSection($course_id, $section_name);
+        if (count($checkSection) > 0) {
+            echo "existed";
         } else {
-            echo "failed";
+            $insertNewSection = $section->insertNewSection($course_id, $section_name);
+            if ($insertNewSection) {
+                echo "success";
+            } else {
+                echo "failed";
+            }
         }
     }

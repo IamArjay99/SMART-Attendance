@@ -5,8 +5,10 @@
 
     // Checking If logged in
     if (isset($_SESSION['data'])) {
-        if (($_SESSION['data']['role_id'] !== "1") && ($_SESSION['data']['role_id'] !== "2")) {
+        if (($_SESSION['data']['role_id'] !== "3")) {
             header("Location: ../../index.php");
+        } else {
+            $faculty_id = $_SESSION['data']['id'];
         }
     } else {
         header("Location: ../../index.php");
@@ -48,7 +50,7 @@
                         <img src="../../dist/img/pla.png" height="70px" width="130px">
                     </div>
                     <div class="btn-group">
-                        <a href="archive_dean_chairperson.php?faculty_id=<?= $faculty_id ?>&subject_id=<?= $subject_id ?>&section_id=<?= $section_id ?>" class="btn btn-link text-secondary font-weight-bold"><h5>Archived</h5></a>
+                        <a href="archive_professor.php?faculty_id=<?= $faculty_id ?>&subject_id=<?= $subject_id ?>&section_id=<?= $section_id ?>" class="btn btn-link text-secondary font-weight-bold"><h5>Archived</h5></a>
                         <a href="../../pdf/download.php?faculty_id=<?= $faculty_id ?>&subject_id=<?= $subject_id ?>&section_id=<?= $section_id ?>&course_id=<?= $course_id ?>" target="_blank" class="btn btn-link text-danger font-weight-bold"><h5>Download PDF File</h5></a>
                     </div>
                 </div>
@@ -112,7 +114,7 @@
                                         $outputAttendances .= "<tr>";
                                         $outputAttendances .= "<td colspan='2'>";
                                         $outputAttendances .= '<img src="../../dist/img/default_image.png" alt="" width="35px" height="35px" class="rounded">';
-                                        $outputAttendances .= "<span><a href='student_dean_chairperson.php?student_id=".$student_id."&course_id=".$course_id."&subject_id=".$subject_id."' class='pl-2'>";
+                                        $outputAttendances .= "<span><a href='student_professor.php?student_id=".$student_id."&course_id=".$course_id."&subject_id=".$subject_id."' class='pl-2'>";
                                         $outputAttendances .= $getStudent['name'];
                                         $outputAttendances .= "</a></span>";
                                         $outputAttendances .= "</td>";
@@ -203,7 +205,7 @@
     <div class="modal" tabindex="-1" role="dialog" id="take-attendance-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="attendance_dean_chairperson.php" method="GET">
+                <form action="attendance_professor.php" method="GET">
                     <div class="modal-header">
                         <h5 class="modal-title">Take Attendance - <span id="attendance-section"></span></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -307,3 +309,4 @@
         });
     </script>
 <?php endblock() ?>
+

@@ -88,6 +88,23 @@
                 </li>
                 <li><a href="../logout.php">Logout</a></li>
             </ul>
+            <?php } else if ($_SESSION['data']['role_id'] === "3") { ?>
+            <ul>
+                <li class="<?= strpos($url, "dashboard_professor") ? "active" : "" ?>">
+                    <a href="dashboard_professor.php">Dashboard</a>
+                </li>
+                <li class="<?= strpos($url, "faculty_professor") ? "active" : "" ?>">
+                    <a href="faculty_professor.php">Faculty</a>
+                </li>
+                <li><a href="../logout.php">Logout</a></li>
+            </ul>
+            <?php } else { ?>
+            <ul>
+                <li class="<?= strpos($url, "dashboard_student") ? "active" : "" ?>">
+                    <a href="dashboard_student.php">Dashboard</a>
+                </li>
+                <li><a href="../logout.php">Logout</a></li>
+            </ul>
             <?php } ?>
         </aside>
         <div class="main-content" id="main-content">

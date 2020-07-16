@@ -62,8 +62,6 @@
 ?>
 
 <?php startblock("another_css") ?>
-<style>
-</style>
 <?php endblock() ?>
 
 <?php startblock("main_content") ?>
@@ -101,7 +99,7 @@
     </div>
 
     <!-- Add Faulcty Modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="add-faculty-modal">
+    <div class="modal" tabindex="-1" role="dialog" id="add-faculty-modal" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form>
@@ -112,6 +110,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="alert text-center" id="error-new-faculty" style="display: none"></div>
                         <div class="form-group">
                             <label for="#name">Name</label>
                             <input type="text" class="form-control" name='name' id="name" required>
@@ -125,13 +124,13 @@
 				        	<div class="input-group">
 					        	<input type="text" id="email" name="email" class="form-control" pattern="[A-Za-z]{3,}[.]{1}[A-Za-z]{2,}" placeholder="firstname.lastname" title="firstname.lastname" required>
 					        	<div class="input-group-append">
-								    <span class="input-group-text" id="basic-addon2">@my.jru.edu</span>
+								    <span class="input-group-text" id="basic-addon2">@jru.edu</span>
 							    </div>
 						    </div>
                         </div>
                         <div class="form-group">
 				        	<label for="#profession">Profession</label>
-                            <select name="profession" id="profession" class='form-control'>
+                            <select name="profession" id="profession" class='form-control' required>
                                 <option value="" default selected disabled>Select Profession</option>
                                 <?php
                                     $getAllProfessions = $profession->getAllProfessions();
@@ -147,7 +146,38 @@
 				        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btn-save-faculty" class="btn btn-primary">Save</button>
+                        <button type="submit" id="btn-save-faculty" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="add-course-modal" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert text-center" id="error-new-course" style="display: none"></div>
+                        <div class="form-group">
+                            <label for="#add-course-name">Course Name</label>
+                            <input type="text" class="form-control" name='add-course_name' id="add-course_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="#add-course-abbr">Course Abbreviation</label>
+                            <input type="text" class="form-control" name='add-course_abbr' id="add-course_abbr" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn-save-course" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -156,7 +186,7 @@
     </div>
 
     <!-- Add Subject Modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="add-subject-modal">
+    <div class="modal" tabindex="-1" role="dialog" id="add-subject-modal" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form>
@@ -167,6 +197,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="alert text-center" id="error-new-subject" style="display: none"></div>
                         <div class="form-group">
                             <label for="#add-subject_course">Course</label>
                             <select name="add-subject_course" id="add-subject_course" class="form-control" required>
@@ -198,7 +229,7 @@
     </div>
 
     <!-- Add Section Modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="add-section-modal">
+    <div class="modal" tabindex="-1" role="dialog" id="add-section-modal" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form>
@@ -209,6 +240,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="alert text-center" id="error-new-section" style="display: none"></div>
                         <div class="form-group">
                             <label for="#add-section_course">Course</label>
                             <select name="add-section_course" id="add-section_course" class="form-control" required>
@@ -234,43 +266,14 @@
             </div>
         </div>
     </div>
-
-    <!-- Add Course Modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="add-course-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h5 class="modal-title">New Course</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="#add-course-name">Course Name</label>
-                            <input type="text" class="form-control" name='add-course_name' id="add-course_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="#add-course-abbr">Course Abbreviation</label>
-                            <input type="text" class="form-control" name='add-course_abbr' id="add-course_abbr" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btn-save-course" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 <?php endblock() ?>
 
 <?php startblock("another_js") ?>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Add faculty
-            $("#add-faculty").on("click", function() {
+            $("#add-faculty").on("click", function(e) {
+                e.preventDefault();
                 $("#add-faculty-modal").modal("show");
                 $("#btn-save-faculty").on("click", function(e) {
                     e.preventDefault();
@@ -279,74 +282,57 @@
                     const email = $("#email").val();
                     const profession = $("#profession").val();
                     const password = $("#password").val();
-                    $.ajax({
-                        method: "POST",
-                        url: "../../ajax/process-faculty.ajax.php",
-                        data: { queryAddFaculty: { name, username, email, profession, password } },
-                        success: function(data) {
-                            if (data === "success") {
-                                Swal.fire({
-                                    title: 'Success',
-                                    text: "The faculty saved successfully",
-                                    icon: 'success',
-                                    timer: 3000,
-                                    showConfirmButton: false
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: 'Error',
-                                    text: "There was an error saving faculty",
-                                    icon: 'error',
-                                    timer: 3000,
-                                    showConfirmButton: false
-                                });
+                    if (name !== "" && username !== "" && email !== "" && profession !== "" && password !== "") {
+                        $.ajax({
+                            method: "POST",
+                            url: "../../ajax/process-faculty.ajax.php",
+                            data: { queryAddFaculty: { name, username, email, profession, password } },
+                            success: function(data) {
+                                if (data === "success") {
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: "The faculty saved successfully",
+                                        icon: 'success',
+                                        timer: 3000,
+                                        showConfirmButton: false
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                } else if (data === "existed") {
+                                    $("#error-new-faculty").addClass("alert-danger");
+                                    $("#error-new-faculty").html("Username or email are already taken");
+                                    $("#error-new-faculty").show();
+                                    setTimeout(() => {
+                                        $("#error-new-faculty").removeClass("alert-danger");
+                                        $("#error-new-faculty").html("");
+                                        $("#error-new-faculty").hide();
+                                    }, 3000);
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: "There was an error saving faculty",
+                                        icon: 'error',
+                                        timer: 3000,
+                                        showConfirmButton: false
+                                    });
+                                }
                             }
-                        }
-                    })
-                })
-            });
-            // Add subject
-            $("#add-subject").on("click", function() {
-                $("#add-subject-modal").modal("show");
-                $("#btn-save-subject").on("click", function(e) {
-                    e.preventDefault();
-                    const subject_name = $("#subject_name").val();
-                    const subject_code = $("#subject_code").val();
-                    const subject_course = $("#add-subject_course").val();
-                    $.ajax({
-                        method: "POST",
-                        url: "../../ajax/process-faculty.ajax.php",
-                        data: { queryAddSubject: { subject_course, subject_code, subject_name } },
-                        success: function(data) {
-                            if (data === "success") {
-                                Swal.fire({
-                                    title: 'Success',
-                                    text: "The subject saved successfully",
-                                    icon: 'success',
-                                    timer: 3000,
-                                    showConfirmButton: false
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: 'Error',
-                                    text: "There was an error saving subject",
-                                    icon: 'error',
-                                    timer: 3000,
-                                    showConfirmButton: false
-                                });
-                            }
-                        }
-                    })
+                        })
+                    } else {
+                        $("#error-new-faculty").addClass("alert-danger");
+                        $("#error-new-faculty").html("All fields are required");
+                        $("#error-new-faculty").show();
+                        setTimeout(() => {
+                            $("#error-new-faculty").removeClass("alert-danger");
+                            $("#error-new-faculty").html("");
+                            $("#error-new-faculty").hide();
+                        }, 3000);
+                    }
                 })
             });
             // Add Course
             $("#add-course").on("click", function() {
                 $("#add-course-modal").modal("show");
-
                 $("#btn-save-course").on("click", function() {
                     const course_name = $("#add-course_name").val();
                     const course_abbr = $("#add-course_abbr").val();
@@ -366,6 +352,15 @@
                                     }).then(function() {
                                         location.reload();
                                     });
+                                } else if (data === "existed") {
+                                    $("#error-new-course").addClass("alert-danger");
+                                    $("#error-new-course").html("Course already exists");
+                                    $("#error-new-course").show();
+                                    setTimeout(() => {
+                                        $("#error-new-course").removeClass("alert-danger");
+                                        $("#error-new-course").html("");
+                                        $("#error-new-course").hide();
+                                    }, 3000);
                                 } else {
                                     Swal.fire({
                                         title: 'Error',
@@ -377,9 +372,74 @@
                                 }
                             }
                         })
-                    } 
+                    } else {
+                        $("#error-new-course").addClass("alert-danger");
+                        $("#error-new-course").html("All fields are required");
+                        $("#error-new-course").show();
+                        setTimeout(() => {
+                            $("#error-new-course").removeClass("alert-danger");
+                            $("#error-new-course").html("");
+                            $("#error-new-course").hide();
+                        }, 3000);
+                    }
                 })
             })
+            // Add subject
+            $("#add-subject").on("click", function() {
+                $("#add-subject-modal").modal("show");
+                $("#btn-save-subject").on("click", function(e) {
+                    e.preventDefault();
+                    const subject_name = $("#subject_name").val();
+                    const subject_code = $("#subject_code").val();
+                    const subject_course = $("#add-subject_course").val();
+                    if (subject_name !== "" && subject_code !== "" && subject_course !== "") {
+                        $.ajax({
+                            method: "POST",
+                            url: "../../ajax/process-faculty.ajax.php",
+                            data: { queryAddSubject: { subject_course, subject_code, subject_name } },
+                            success: function(data) {
+                                if (data === "success") {
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: "The subject saved successfully",
+                                        icon: 'success',
+                                        timer: 3000,
+                                        showConfirmButton: false
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                } else if (data === "existed") {
+                                    $("#error-new-subject").addClass("alert-danger");
+                                    $("#error-new-subject").html("Subject already exists");
+                                    $("#error-new-subject").show();
+                                    setTimeout(() => {
+                                        $("#error-new-subject").removeClass("alert-danger");
+                                        $("#error-new-subject").html("");
+                                        $("#error-new-subject").hide();
+                                    }, 3000);
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: "There was an error saving subject",
+                                        icon: 'error',
+                                        timer: 3000,
+                                        showConfirmButton: false
+                                    });
+                                }
+                            }
+                        })
+                    } else {
+                        $("#error-new-subject").addClass("alert-danger");
+                        $("#error-new-subject").html("All fields are required");
+                        $("#error-new-subject").show();
+                        setTimeout(() => {
+                            $("#error-new-subject").removeClass("alert-danger");
+                            $("#error-new-subject").html("");
+                            $("#error-new-subject").hide();
+                        }, 3000);
+                    }
+                })
+            });
             // Add Section
             $('#add-section').on("click", function() {
                 $("#add-section-modal").modal("show");
@@ -402,6 +462,15 @@
                                     }).then(function() {
                                         location.reload();
                                     });
+                                } else if (data === "existed") {
+                                    $("#error-new-section").addClass("alert-danger");
+                                    $("#error-new-section").html("Section already exists");
+                                    $("#error-new-section").show();
+                                    setTimeout(() => {
+                                        $("#error-new-section").removeClass("alert-danger");
+                                        $("#error-new-section").html("");
+                                        $("#error-new-section").hide();
+                                    }, 3000);
                                 } else {
                                     Swal.fire({
                                         title: 'Error',
@@ -413,6 +482,15 @@
                                 }
                             }
                         })
+                    } else {
+                        $("#error-new-section").addClass("alert-danger");
+                        $("#error-new-section").html("All fields are required");
+                        $("#error-new-section").show();
+                        setTimeout(() => {
+                            $("#error-new-section").removeClass("alert-danger");
+                            $("#error-new-section").html("");
+                            $("#error-new-section").hide();
+                        }, 3000);
                     }
                 })
             })

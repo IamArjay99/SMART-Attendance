@@ -4,7 +4,7 @@ class Database {
     private $host     = "localhost";
     private $user     = "root";
     private $password = "";
-    private $dbname   = "smart-attendance";
+    private $dbname   = "smart_attendance";
 
     protected function connect() {
         $dsn = "mysql:host=" .$this->host. ";dbname=" .$this->dbname;

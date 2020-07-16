@@ -78,17 +78,39 @@ class Attendance extends Database {
     }
 
     // Get studnet attendance
-    public function getStudentAttendances($course_id, $subject_id, $student_id) {
+    public function getStudentAttendances($course_id, $subject_id, $student_id, $faculty_id = "") {
         if ($subject_id === "all") {
-            $sql = "SELECT * FROM attendances WHERE course_id = ? AND student_id = ? AND deleted_at IS ? ORDER BY date_id DESC";
-            $query = $this->connect()->prepare($sql);
-            $query->execute([$course_id, $student_id, NULL]);
-            return $query->fetchAll();
+            if ($faculty_id !== "") {
+                $sql = "SELECT * FROM attendances
+                        INNER JOIN dates ON dates.id = attendances.date_id 
+                        WHERE attendances.course_id = ? AND attendances.student_id = ? AND attendances.faculty_id = ? AND attendances.deleted_at IS ? ORDER BY attendances.subject_id ASC, dates.date DESC";
+                $query = $this->connect()->prepare($sql);
+                $query->execute([$course_id, $student_id, $faculty_id, NULL]);
+                return $query->fetchAll();
+            } else {
+                $sql = "SELECT * FROM attendances
+                        INNER JOIN dates ON dates.id = attendances.date_id 
+                        WHERE attendances.course_id = ? AND attendances.student_id = ? AND attendances.deleted_at IS ? ORDER BY attendances.subject_id ASC, dates.date DESC";
+                $query = $this->connect()->prepare($sql);
+                $query->execute([$course_id, $student_id, NULL]);
+                return $query->fetchAll();
+            }
         } else {
-            $sql = "SELECT * FROM attendances WHERE course_id = ? AND subject_id = ? AND student_id = ? AND deleted_at IS ? ORDER BY date_id DESC";
-            $query = $this->connect()->prepare($sql);
-            $query->execute([$course_id, $subject_id,  $student_id, NULL]);
-            return $query->fetchAll();
+            if ($faculty_id !== "") {
+                $sql = "SELECT * FROM attendances
+                        INNER JOIN dates ON dates.id = attendances.date_id 
+                        WHERE attendances.course_id = ? AND attendances.subject_id = ? AND attendances.student_id = ? AND attendances.faculty_id = ? AND attendances.deleted_at IS ? ORDER BY attendances.subject_id ASC, dates.date DESC";
+                $query = $this->connect()->prepare($sql);
+                $query->execute([$course_id, $subject_id, $student_id, $faculty_id, NULL]);
+                return $query->fetchAll();
+            } else {
+                $sql = "SELECT * FROM attendances
+                        INNER JOIN dates ON dates.id = attendances.date_id 
+                        WHERE attendances.course_id = ? AND attendances.subject_id = ? AND attendances.student_id = ? AND attendances.deleted_at IS ? ORDER BY attendances.subject_id ASC, dates.date DESC";
+                $query = $this->connect()->prepare($sql);
+                $query->execute([$course_id, $subject_id,  $student_id, NULL]);
+                return $query->fetchAll();
+            }
         }
     }
 

@@ -34,7 +34,7 @@
                             <div class="feedback"></div>
                             <div class="form-group">
                                 <label for="email">Email/ Username</label>
-                                <input type="text" name="email" id="email" required />
+                                <input type="text" name="email" id="email" required autocomplete="off" />
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
@@ -42,7 +42,7 @@
                                     type="password"
                                     name="password"
                                     id="password"
-                                    required
+                                    required autocomplete="off"
                                 />
                             </div>
                             <button type="submit" name="login" id="login">

@@ -28,4 +28,12 @@ class Subject extends Database {
         $query->execute([NULL]);
         return $query->fetchAll();
     }
+
+    // Check subject if existed
+    public function checkSubject($course_id, $name, $code) {
+        $sql = "SELECT * FROM subjects WHERE course_id = ? AND (name = ? || code = ?)";
+        $query = $this->connect()->prepare($sql);
+        $query->execute([$course_id, $name, $code]);
+        return $query->fetchAll();
+    }
 }

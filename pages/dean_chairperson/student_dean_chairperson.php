@@ -28,8 +28,6 @@
 ?>
 
 <?php startblock("another_css") ?>
-<style>
-</style>
 <?php endblock() ?>
 
 <?php startblock("main_content") ?>

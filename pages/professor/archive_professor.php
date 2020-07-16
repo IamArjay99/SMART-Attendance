@@ -5,8 +5,10 @@
 
     // Checking If logged in
     if (isset($_SESSION['data'])) {
-        if (($_SESSION['data']['role_id'] !== "1") && ($_SESSION['data']['role_id'] !== "2")) {
+        if (($_SESSION['data']['role_id'] !== "3")) {
             header("Location: ../../index.php");
+        } else {
+            $faculty_id = $_SESSION['data']['id'];
         }
     } else {
         header("Location: ../../index.php");

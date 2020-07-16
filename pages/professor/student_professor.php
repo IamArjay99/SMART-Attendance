@@ -5,24 +5,28 @@
 
     // Checking If logged in
     if (isset($_SESSION['data'])) {
-        if (($_SESSION['data']['role_id'] !== "4")) {
+        if (($_SESSION['data']['role_id'] !== "3")) {
             header("Location: ../../index.php");
         } else {
-            $student_id = $_SESSION['data']['id'];
-            $subject_id = $_GET['subject_id'];
-            $getStudent = $student->getStudent($student_id);
-            $course_id = $getStudent['course_id'];
-            $student_name = $getStudent['name'];
-            $student_number = $getStudent['student_number'];
-            $student_year_id = $getStudent['year_id'];
-            $getYear = $year->getYear($student_year_id);
-            $getCourse = $course->getCourse($course_id);
-            $course_name = $getCourse['name'];
-            $year_name = $getYear['name'];
+            $faculty_id = $_SESSION['data']['id'];
         }
     } else {
         header("Location: ../../index.php");
     }
+
+    if (isset($_GET['course_id']) && isset($_GET['subject_id']) && isset($_GET['student_id'])) {
+        $course_id = $_GET['course_id'];
+        $subject_id = $_GET['subject_id'];
+        $student_id = $_GET['student_id'];
+        $getStudent = $student->getStudent($student_id);
+        $student_name = $getStudent['name'];
+        $student_number = $getStudent['student_number'];
+        $student_year_id = $getStudent['year_id'];
+        $getYear = $year->getYear($student_year_id);
+        $getCourse = $course->getCourse($course_id);
+        $course_name = $getCourse['name'];
+        $year_name = $getYear['name'];
+    } 
 ?>
 
 <?php startblock("another_css") ?>
@@ -44,17 +48,17 @@
                             <div class="student-course"><?= strtoupper($course_name) ?></div>
                             <div class="student-year"><?= strtoupper($year_name) ?></div>
                             <div class="student-subject">
-                                <form action="dashboard_student.php" method="GET" id="form-subjects">
+                                <form action="student_professor.php" method="GET" id="form-subjects">
                                 <input type="hidden" name="course_id" value="<?= $course_id ?>">
                                 <input type="hidden" name="student_id" value="<?= $student_id ?>">
                                     SUBJECT CODE 
                                     <select name="subject_id" id="subject_id">
                                     <?php
-                                        $getStudentEnrollSubject = $enroll->getStudentEnrollSubject($course_id, $subject_id, $student_id);
+                                        $getStudentEnrollSubject = $enroll->getStudentEnrollSubject($course_id, $subject_id, $student_id, $faculty_id);
                                         $getSubject = $subject->getSubject($getStudentEnrollSubject['subject_id']);
                                         $subject_code = $getSubject['code'];
 
-                                        $getStudentAllEnrollSubjects = $enroll->getStudentAllEnrollSubjects($course_id, $student_id);
+                                        $getStudentAllEnrollSubjects = $enroll->getStudentAllEnrollSubjects($course_id, $student_id, $faculty_id);
                                         foreach($getStudentAllEnrollSubjects as $getStudentAllEnrollSubject) {
                                             $getSubject = $subject->getSubject($getStudentAllEnrollSubject['subject_id']);
                                             if ($subject_id !== $getSubject['id']) {
@@ -77,7 +81,7 @@
                     </div>
                 </div>
                 <div class="btn-group float-right">
-                    <a href="../../pdf/download.php?course_id=<?= $course_id ?>&subject_id=<?= $subject_id ?>&student_id=<?= $student_id ?>" target="_blank" class="btn btn-link text-danger font-weight-bold"><h5>Download PDF File</h5></a>
+                    <a href="../../pdf/download.php?course_id=<?= $course_id ?>&subject_id=<?= $subject_id ?>&student_id=<?= $student_id ?>&faculty_id=<?= $faculty_id ?>" target="_blank" class="btn btn-link text-danger font-weight-bold"><h5>Download PDF File</h5></a>
                 </div>
                 <div class="table-responsive px-3 pt-2">
                         <table class="table table-bordered table-hover" id="idAttendance">
@@ -91,7 +95,7 @@
                             </thead>
                             <tbody class="text-center">
                             <?php
-                                $getStudentAttendances = $attendance->getStudentAttendances($course_id, $subject_id, $student_id);
+                                $getStudentAttendances = $attendance->getStudentAttendances($course_id, $subject_id, $student_id, $faculty_id);
                                 if (count($getStudentAttendances) > 0) {
                                     foreach($getStudentAttendances as $getStudentAttendance) {
                                         $getSubject = $subject->getSubject($getStudentAttendance['subject_id']);

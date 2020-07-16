@@ -39,4 +39,12 @@ class Faculty extends Database {
         return $query;
     }
 
+    // Check if username and email are unique
+    public function checkUsernameAndEmail($username, $email) {
+        $sql = "SELECT * FROM faculties WHERE (username = ? || email = ?)";
+        $query = $this->connect()->prepare($sql);
+        $query->execute([$username, $email]);
+        return $query->fetchAll();
+    }
+
 }

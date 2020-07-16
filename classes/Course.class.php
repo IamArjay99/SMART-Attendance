@@ -22,4 +22,12 @@ class Course extends Database {
         $query->execute([$course_name, $course_abbr]);
         return $query;
     }
+
+    // Checking if course is existed
+    public function checkCourse($course_name, $course_abbr) {
+        $sql = "SELECT * FROM courses WHERE (name = ? || abbr = ?)";
+        $query = $this->connect()->prepare($sql);
+        $query->execute([$course_name, $course_abbr]);
+        return $query->fetchAll();
+    }
 }

@@ -34,7 +34,7 @@
                     "password" => $login['password'],
                     "year_id" => $login['year_id'],
                 ];    
-                echo "pages/student/dashboard_student.php";       
+                echo "pages/student/dashboard_student.php?subject_id=all";       
             }
         } else {
             echo "false";
