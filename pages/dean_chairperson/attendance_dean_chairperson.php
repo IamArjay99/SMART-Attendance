@@ -30,6 +30,8 @@
     } else {
         echo "<script>history.back();</script>";
     }
+
+    date_default_timezone_set('Asia/Manila');
 ?>
 
 <?php startblock("another_css") ?>
@@ -130,7 +132,7 @@
                                 data-faculty_id="<?= $faculty_id ?>"
                                 data-section_id="<?= $section_id ?>"
                                 data-date="<?= $date ?>"
-                                data-time="<?= date("h:m:s") ?>">SAVE</button>
+                                data-time="<?= date("h:i:s") ?>">SAVE</button>
                         <button class="btn btn-danger btn-md" onclick="history.back();">CANCEL</button>
                     </div>
                 </div>
