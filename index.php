@@ -10,6 +10,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SMART Attendance</title>
+        <link rel="shortcut icon" href="dist/img/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="./dist/css/styles.min.css" />
     </head>
     <body>

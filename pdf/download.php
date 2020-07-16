@@ -68,10 +68,7 @@
                     $this->setX(188);
                     $this->Cell(98, 8, $faculty_profession.". ".$faculty_name , 1, 0, 'L');
                     $this->Ln();
-                }
 
-                function attendanceTable() {
-                    global $course_id, $subject_id, $faculty_id, $section_id, $date, $enroll, $student, $attendance;
                     $this->setY(69);
                     $this->Cell(61, 16, "Names", 1, 0, 'C');
                     $this->setX(71);
@@ -79,6 +76,10 @@
                     $this->Ln();
                     $this->setX(71);
                     $this->Cell(215, 8, "", 1, 0, 'C');
+                }
+
+                function attendanceTable() {
+                    global $course_id, $subject_id, $faculty_id, $section_id, $date, $enroll, $student, $attendance;
                     $getArchiveDates = $date->getArchiveDates($course_id, $subject_id, $faculty_id, $section_id);
                     $countDates = count($getArchiveDates);
                     $cellDateWidth = 215 / $countDates;
@@ -208,10 +209,7 @@
                     $this->setX(188);
                     $this->Cell(98, 8, $faculty_profession.". ".$faculty_name , 1, 0, 'L');
                     $this->Ln();
-                }
 
-                function attendanceTable() {
-                    global $course_id, $subject_id, $faculty_id, $section_id, $date, $enroll, $student, $attendance;
                     $this->setY(69);
                     $this->Cell(61, 16, "Names", 1, 0, 'C');
                     $this->setX(71);
@@ -219,6 +217,11 @@
                     $this->Ln();
                     $this->setX(71);
                     $this->Cell(215, 8, "", 1, 0, 'C');
+                }
+
+                function attendanceTable() {
+                    global $course_id, $subject_id, $faculty_id, $section_id, $date, $enroll, $student, $attendance;
+            
                     $getDates = $date->getDates($course_id, $subject_id, $faculty_id, $section_id);
                     $countDates = count($getDates);
                     $cellDateWidth = 215 / $countDates;
@@ -398,14 +401,7 @@
                     $this->setX(188);
                     $this->Cell(98, 8, $display_instructor, 1, 0, 'L');
                     $this->Ln();
-                }
-    
-                function attendanceTable() {
-                    global $course_id, $subject_id, $student_id, $faculty_id;
-                    global $attendance, $date, $subject;
-    
-                    $getStudentAttendances = $attendance->getStudentAttendances($course_id, $subject_id, $student_id, $faculty_id);
-                    
+
                     $this->setY(77);
                     $this->Cell(69, 8, "Time", 1, 0, 'C');
                     $this->setX(79);
@@ -415,6 +411,13 @@
                     $this->setX(217);
                     $this->Cell(69, 8, "", 1, 0, 'C');
                     $this->Ln();
+                }
+    
+                function attendanceTable() {
+                    global $course_id, $subject_id, $student_id, $faculty_id;
+                    global $attendance, $date, $subject;
+    
+                    $getStudentAttendances = $attendance->getStudentAttendances($course_id, $subject_id, $student_id, $faculty_id);
                     if (count($getStudentAttendances) > 0) {
                         foreach($getStudentAttendances as $getStudentAttendance) {
                             $getSubject = $subject->getSubject($getStudentAttendance['subject_id']);
@@ -542,14 +545,7 @@
                     $this->setX(188);
                     $this->Cell(98, 8, $display_instructor, 1, 0, 'L');
                     $this->Ln();
-                }
-    
-                function attendanceTable() {
-                    global $course_id, $subject_id, $student_id;
-                    global $attendance, $date, $subject;
-    
-                    $getStudentAttendances = $attendance->getStudentAttendances($course_id, $subject_id, $student_id);
-                    
+
                     $this->setY(77);
                     $this->Cell(69, 8, "Time", 1, 0, 'C');
                     $this->setX(79);
@@ -559,6 +555,14 @@
                     $this->setX(217);
                     $this->Cell(69, 8, "", 1, 0, 'C');
                     $this->Ln();
+                }
+    
+                function attendanceTable() {
+                    global $course_id, $subject_id, $student_id;
+                    global $attendance, $date, $subject;
+    
+                    $getStudentAttendances = $attendance->getStudentAttendances($course_id, $subject_id, $student_id);
+                    
                     if (count($getStudentAttendances) > 0) {
                         foreach($getStudentAttendances as $getStudentAttendance) {
                             $getSubject = $subject->getSubject($getStudentAttendance['subject_id']);
