@@ -9,13 +9,6 @@ class Enroll extends Database {
         return $query->fetchAll();
     }
 
-    // public function getAllEnrollSubjects($student_id) {
-    //     $sql = "SELECT * FROM enrolled WHERE student_id = ? AND deleted_at IS ?";
-    //     $query = $this->connect()->prepare($sql);
-    //     $query->execute([$student_id, NULL]);
-    //     return $query->fetchAll();
-    // }
-
     // Saving enroll subjects
     public function saveStudentSubjects($course_id, $subject_id, $faculty_id, $section_id, $student_id) {
         $sql = "INSERT INTO enrolled (course_id, subject_id, faculty_id, section_id, student_id) VALUES (?,?,?,?,?)";

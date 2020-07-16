@@ -48,7 +48,7 @@
                             <div class="student-course"><?= strtoupper($course_name) ?></div>
                             <div class="student-year"><?= strtoupper($year_name) ?></div>
                             <div class="student-subject">
-                                <form action="student_dean_chairperson.php" method="GET">
+                                <form action="student_dean_chairperson.php" method="GET" id="form-subjects">
                                 <input type="hidden" name="course_id" value="<?= $course_id ?>">
                                 <input type="hidden" name="student_id" value="<?= $student_id ?>">
                                     SUBJECT CODE 
@@ -75,11 +75,13 @@
                                         }
                                     ?>
                                     </select>
-                                    <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="btn-group float-right">
+                    <a href="../../pdf/download.php?course_id=<?= $course_id ?>&subject_id=<?= $subject_id ?>&student_id=<?= $student_id ?>" target="_blank" class="btn btn-link text-danger font-weight-bold"><h5>Download PDF File</h5></a>
                 </div>
                 <div class="table-responsive px-3 pt-2">
                         <table class="table table-bordered table-hover" id="idAttendance">
@@ -101,22 +103,29 @@
                                         $date_id = $getStudentAttendance['date_id'];
                                         $getDate = $date->getDate($date_id);
                                         $dates = $getDate['date'];
-                                        echo "<tr>";
-                                        echo "<td>";
-                                        echo date("h:iA", strtotime($getStudentAttendance['time']));
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo date("M d, Y", strtotime($dates));
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $subject_name;
-                                        echo "</td>";
-                                        if ($getStudentAttendance['presence'] === "P") {
-                                            echo '<td class="bg-dark text-success">'. $getStudentAttendance['presence'] .'</td>';
-                                        } else {
-                                            echo '<td class="bg-dark text-danger">'. $getStudentAttendance['presence'] .'</td>';
+
+                                        $checkDate = $date->checkDate($date_id);
+                                        $dateDeletedAt = $checkDate['deleted_at'];
+                                        
+                                        // Checking if the date is on archive
+                                        if ($dateDeletedAt === NULL) {
+                                            echo "<tr>";
+                                            echo "<td>";
+                                            echo date("h:iA", strtotime($getStudentAttendance['time']));
+                                            echo "</td>";
+                                            echo "<td>";
+                                            echo date("M d, Y", strtotime($dates));
+                                            echo "</td>";
+                                            echo "<td>";
+                                            echo $subject_name;
+                                            echo "</td>";
+                                            if ($getStudentAttendance['presence'] === "P") {
+                                                echo '<td class="bg-dark text-success">'. $getStudentAttendance['presence'] .'</td>';
+                                            } else {
+                                                echo '<td class="bg-dark text-danger">'. $getStudentAttendance['presence'] .'</td>';
+                                            }
+                                            echo "</tr>";
                                         }
-                                        echo "</tr>";
                                     }
                                 } else {
                                     echo "<tr><td class='text-center' colspan='4'>No data found</td></tr>";
@@ -133,5 +142,13 @@
 
 <?php startblock("another_js") ?>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const subjectOptions = document.querySelector("#subject_id");
+            const formSubjects = document.querySelector("#form-subjects");
+            subjectOptions.addEventListener("change", function(e) {
+                e.preventDefault();
+                formSubjects.submit();
+            })
+        })
     </script>
 <?php endblock() ?>

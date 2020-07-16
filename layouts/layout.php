@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Attendance</title>
+    <title>SMART Attendance</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -77,13 +77,13 @@
         <aside class="sidebar" id="sidebar">
             <?php if ($_SESSION['data']['role_id'] === "1" || $_SESSION['data']['role_id'] === "2") { ?>
             <ul>
-                <li class="<?= strpos($url, "dashboard") ? "active" : "" ?>">
+                <li class="<?= strpos($url, "dashboard_dean_chairperson") ? "active" : "" ?>">
                     <a href="dashboard_dean_chairperson.php">Dashboard</a>
                 </li>
-                <li class="<?= strpos($url, "faculty") ? "active" : "" ?>">
+                <li class="<?= strpos($url, "faculty_dean_chairperson") ? "active" : "" ?>">
                     <a href="faculty_dean_chairperson.php">Faculty</a>
                 </li>
-                <li class="<?= strpos($url, "registration") ? "active" : "" ?>">
+                <li class="<?= strpos($url, "registration_dean_chairperson") ? "active" : "" ?>">
                     <a href="registration_dean_chairperson.php">Registration</a>
                 </li>
                 <li><a href="../logout.php">Logout</a></li>

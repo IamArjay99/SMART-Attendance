@@ -51,10 +51,19 @@ class Date extends Database {
         return $query;
     }
 
+    // Get date
     public function getDate($date_id) {
         $sql = "SELECT * FROM dates WHERE id = ? AND deleted_at IS ?";
         $query = $this->connect()->prepare($sql);
         $query->execute([$date_id, NULL]);
+        return $query->fetch();
+    }
+
+    // check date if on archive
+    public function checkDate($date_id) {
+        $sql = "SELECT * FROM dates WHERE id = ?";
+        $query = $this->connect()->prepare($sql);
+        $query->execute([$date_id]);
         return $query->fetch();
     }
 }

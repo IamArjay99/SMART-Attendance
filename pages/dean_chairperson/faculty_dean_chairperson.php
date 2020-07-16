@@ -73,8 +73,8 @@
             <div class="offset-md-1 col-md-10 col-sm-12">
                 <div class="btn-group">
                     <button class="btn btn-success m-1" id="add-faculty">Add Faculty</button>
-                    <button class="btn btn-secondary m-1" id="add-subject">Add Subject</button>
                     <button class="btn btn-warning m-1" id="add-course">Add Course</button>
+                    <button class="btn btn-secondary m-1" id="add-subject">Add Subject</button>
                     <button class="btn btn-info m-1" id="add-section">Add Section</button>
                 </div>
                 <div class="table-responsive">

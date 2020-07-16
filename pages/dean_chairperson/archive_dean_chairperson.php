@@ -48,7 +48,7 @@
                         <img src="../../dist/img/pla.png" height="70px" width="130px">
                     </div>
                     <div class="btn-group">
-                        <a href="#" class="btn btn-link text-danger font-weight-bold"><h5>Download PDF File</h5></a>
+                        <a href="../../pdf/download.php?faculty_id=<?= $faculty_id ?>&subject_id=<?= $subject_id ?>&section_id=<?= $section_id ?>&course_id=<?= $course_id ?>&type=archive" target="_blank" class="btn btn-link text-danger font-weight-bold"><h5>Download PDF File</h5></a>
                     </div>
                 </div>
                 <div class="col-attendance table-responsive-sm my-2">
@@ -76,32 +76,6 @@
                                     echo $sched."<br>";
 
                                     // This is for dates
-                                    // $outputDates = "";
-                                    // $getArchiveAttendances = $attendance->getArchiveAttendances($course_id, $subject_id, $faculty_id, $section_id);
-                                    // $countDates = count($getArchiveAttendances);
-                                    // if ($countDates > 0) {
-                                    //     foreach($getArchiveAttendances as $getArchiveAttendance) {
-                                    //         $student_id = $getArchiveAttendance['student_id'];
-                                    //         $date = $getArchiveAttendance['date'];
-                                    //         $outputDates .= "<td>";
-                                    //         // if ($_SESSION['data']['id'] === $faculty_id) {
-                                                // $outputDates .= '<button class="btn btn-success btn-sm btn-restore-attendance" data-date="'.$date.'" 
-                                                // data-course_id="'.$course_id.'"
-                                                // data-subject_id="'.$subject_id.'"
-                                                // data-faculty_id="'.$faculty_id.'"
-                                                // data-section_id="'.$section_id.'"
-                                                // data-student_id="'.$student_id.'"
-                                                // ><i class="fa fa-window-restore" aria-hidden="true"></i></button><br>';
-                                    //         // }
-                                    //         $outputDates .= "<span>";
-                                    //         $outputDates .= $date;
-                                    //         $outputDates .= "</span>";
-                                    //         $outputDates .= "</td>";
-                                    //     }
-                                    // } else {
-                                    //     $outputDates .= "<td> - </td>";
-                                    // }
-                                    // This is for dates
                                     $getArchiveDates = $date->getArchiveDates($course_id, $subject_id, $faculty_id, $section_id);
                                     $outputDates = "";
                                     $countDates = count($getArchiveDates);
@@ -124,45 +98,6 @@
                                     } else {
                                         $outputDates .= "<td> - </td>";
                                     }
-
-                                    // $outputAttendances = "";
-                                    // $getAllEnrollees = $enroll->getAllEnrollees($course_id, $subject_id, $faculty_id, $section_id);
-                                    // $countEnrollees = count($getAllEnrollees);
-                                    // if ($countEnrollees > 0) {
-                                    //     foreach($getAllEnrollees as $getAllEnrollee) {
-                                    //         $student_id = $getAllEnrollee['student_id'];
-                                    //         $getStudent = $student->getStudent($student_id);
-                                    //         $outputAttendances .= "<tr>";
-                                    //         $outputAttendances .= "<td>";
-                                    //         $outputAttendances .= '<img src="../../dist/img/default_image.png" alt="" width="35px" height="35px" class="rounded">';
-                                    //         $outputAttendances .= "<span><a href='#' class='pl-2'>";
-                                    //         $outputAttendances .= $getStudent['name'];
-                                    //         $outputAttendances .= "</a></span>";
-                                    //         $outputAttendances .= "</td>";
-                                            // $getArchiveAttendances = $attendance->getArchiveAttendances($course_id, $subject_id, $faculty_id, $section_id, $student_id);
-                                            // $countArchiveAttendances = count($getArchiveAttendances);
-                                            // if ($countArchiveAttendances > 0) {
-                                            //     foreach($getArchiveAttendances as $getArchiveAttendance) {
-                                            //         $presence = $getArchiveAttendance['presence'];
-                                            //         if ($presence === "P") {
-                                            //             $outputAttendances .= "<td style='color: #1B2C64; font-weight: bolder; text-align: center'>";
-                                            //         } else if ($presence === "L") {
-                                            //             $outputAttendances .= "<td style='color: #E39D00; font-weight: bolder; text-align: center'>";
-                                            //         } else {
-                                            //             $outputAttendances .= "<td style='color: #353537; font-weight: bolder; text-align: center'>";
-                                            //         }
-                                            //         $outputAttendances .= $presence;
-                                            //         $outputAttendances .= "</td>";
-                                            //     }
-                                            // } else {
-                                            //     $outputAttendances .= "<td class='text-center'> - </td>";
-                                            // }
-                                            
-                                    //         $outputAttendances .= "</tr>";
-                                    //     }
-                                    // } else {
-                                    //     $outputAttendances .= "<tr><td colspan='2' class='text-center'>No data found</td></tr>";
-                                    // }
 
                                     // Attendance
                                     $outputAttendances = "";
